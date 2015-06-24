@@ -1,0 +1,106 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Part of Niles Johnson's latex setup
+%% This document is in the public domain (2015)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% This file was created with JabRef 2.9.2.
+% Encoding: MacRoman
+
+@BOOK{Ada74,
+  title = {Stable {H}omotopy and {G}eneralised {H}omology},
+  publisher = {University of Chicago Press},
+  year = {1974},
+  author = {Adams, J. Frank},
+  series = {Chicago Lectures in Mathematics}
+}
+
+@BOOK{EKMM97,
+  title = {Rings, modules, and algebras in stable homotopy theory},
+  publisher = {American Mathematical Society},
+  year = {1997},
+  author = {Elmendorf, A. D. and Kriz, I. and Mandell, M.~A. and May, J.~P.},
+  volume = {47},
+  pages = {xii+249},
+  series = {Mathematical Surveys and Monographs},
+  address = {Providence, RI},
+  note = {With an appendix by M. Cole},
+  isbn = {0-8218-0638-6},
+  mrclass = {55N20 (19D10 19D55 55P42 55T25)},
+  mrnumber = {MR1417719 (97h:55006)},
+  mrreviewer = {Donald M. Davis}
+}
+
+@BOOK{Eve91Cohomology,
+  title = {The Cohomology of Groups},
+  publisher = {The Clarendon Press Oxford University Press},
+  year = {1991},
+  author = {Evens, L.},
+  pages = {xii+159},
+  series = {Oxford Mathematical Monographs},
+  address = {New York},
+  note = {Oxford Science Publications},
+  isbn = {0-19-853580-5},
+  mrclass = {20J06 (20-02)},
+  mrnumber = {MR1144017 (93i:20059)},
+  mrreviewer = {U. Stammbach}
+}
+
+@ARTICLE{Eve61Cohomology,
+  author = {Evens, Leonard},
+  title = {The Cohomology Ring of a Finite Group},
+  journal = {Trans. Amer. Math. Soc.},
+  year = {1961},
+  volume = {101},
+  pages = {224--239},
+  fjournal = {Transactions of the American Mathematical Society},
+  issn = {0002-9947},
+  mrclass = {18.20},
+  mrnumber = {MR0137742 (25 \#1191)},
+  mrreviewer = {K. Grant}
+}
+
+@UNPUBLISHED{GO12Infinite,
+  author = {Gurski, N. and Osorno, A.M.},
+  title = {Infinite loop spaces, and coherence for symmetric monoidal bicategories},
+  arxiv = {1210.1174},
+  year = {2012}
+}
+
+
+@ARTICLE{JoN09b,
+  author = {Niles Johnson and Justin Noel},
+  title = {For Complex Orientations Preserving Power Operations, $p$-typicality
+	is Atypical},
+  journal = {Topology and its applications},
+  year = {2010},
+  volume = {157},
+  pages = {pp.~2271-2288},
+  number = {14},
+  arxiv = {0910.3187},
+  comments = {19 pages},
+  doi = {10.1016/j.topol.2010.06.007},
+  eprint = {0910.3187},
+  mrclass = {55P43 (55P42)},
+  mrnumber = {2670503 (2011g:55009)},
+  mrreviewer = {Yutaka Hemmi},
+  oai2identifier = {0910.3187},
+  owner = {justin},
+  timestamp = {2009.11.16},
+}
+
+@ELECTRONIC{ATC,
+  title = {{AlgTop-Conf}},
+  note = {An open list for conference announcements.},
+  url = {http://www.nilesjohnson.net/algtop-conf/},
+  key = {ATC},
+  owner = {niles},
+  timestamp = {2010.10.15}
+}
+
+@MANUAL{sage,
+  title = {Sage Mathematics Software},
+  organization = {The Sage Development Team},
+  note = {\url{http://www.sagemath.org}},
+  key = {Sage}
+}
+

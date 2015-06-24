@@ -1,0 +1,121 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Part of Niles Johnson's latex setup
+%% This document is in the public domain (2015)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%
+%%  page setup stuff:
+%%  geometry, datetime, hyperref, todonotes, cleverref
+%%
+%%  v. 5.0  2015-06-24
+%%
+
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{stackrel} %Better stackrel includes superscripts and subscripts
+
+\usepackage{ifdraft} % special commands for draft mode
+\usepackage{ifpdf}
+\usepackage{xcolor}
+
+%% to omit section from amsart table of contents: 
+%% put the following just before the 
+%% (sub)section command
+%%   \addtocontents{toc}{\SkipTocEntry}
+%%
+\DeclareRobustCommand{\SkipTocEntry}[5]{}
+
+
+\usepackage{geometry}
+\geometry{verbose, textheight=9in, textwidth=5.7in}
+\savegeometry{default}
+
+\usepackage[short, nodayofweek, level]{datetime}
+\renewcommand{\dateseparator}{-}
+
+
+%% time with timezones
+\usepackage{etoolbox}
+
+\def\parsepdfdatetime#1:#2#3#4#5#6#7#8#9{%
+  \def\theyear{#2#3#4#5}%
+  \def\themonth{#6#7}%
+  \def\theday{#8#9}%
+  \parsepdftime
+}
+
+\def\parsepdftime#1#2#3#4#5#6#7\endparsepdfdatetime{%
+  \def\thehour{#1#2}%
+  \def\theminute{#3#4}%
+  \def\thesecond{#5#6}%
+  \ifstrequal{#7}{Z}
+  {%
+    \def\thetimezonehour{+00}%
+    \def\thetimezoneminute{00}%
+  }%
+  {%
+    \parsepdftimezone#7%
+  }%
+}
+
+\def\parsepdftimezone#1'#2'{%
+  \def\thetimezonehour{#1}%
+  \def\thetimezoneminute{#2}%
+}
+
+\newcommand*{\thetimezone}{\thetimezonehour:\thetimezoneminute}
+
+% get current time/date
+\expandafter\parsepdfdatetime\pdfcreationdate\endparsepdfdatetime
+
+
+%% unicode
+\usepackage{ucs} % for unicode symbols
+\usepackage[utf8x]{inputenc}  % for unicode symbols
+% you have to pre-render your unicode symbols
+%   if your viewer supports unicode, you should see that the first
+%   symbol is an infinity sign, followed by others
+\PrerenderUnicode{∞}
+\PrerenderUnicode{η}
+\PrerenderUnicode{ε}
+\PrerenderUnicode{Γ}
+
+\usepackage[unicode=true, pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,
+ breaklinks=false,
+ backref=false,
+ colorlinks=true,
+ linkcolor=blue!70!black,
+ citecolor=black,
+ urlcolor=blue!78!red,
+ final
+]{hyperref}
+
+\usepackage{bookmark}
+
+
+
+
+
+%%
+%% cross references
+%%
+\usepackage[capitalise]{cleveref}
+\newcommand{\fref}{\cref}
+\newcommand{\Fref}{\Cref}
+\newcommand{\prettyref}{\cref}
+\newcommand{\newrefformat}[2]{}
+
+% Cleveref definitions
+\crefname{lem}{Lemma}{Lemmas}
+\crefname{thm}{Theorem}{Theorems}
+\crefname{defn}{Definition}{Definitions}
+\crefname{notn}{Notation}{Notations}
+\crefname{construction}{Construction}{Constructions}
+\crefname{prop}{Proposition}{Propositions}
+\crefname{rmk}{Remark}{Remarks}
+\crefname{cor}{Corollary}{Corollaries}
+\crefname{figure}{Figure}{Figures}
+\crefname{equation}{Display}{Displays} % give 'equation' a more general name 
+\crefname{eq}{Display}{Displays}
+\crefname{eqn}{Display}{Displays}

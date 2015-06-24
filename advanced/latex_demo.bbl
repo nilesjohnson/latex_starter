@@ -1,0 +1,50 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\doi}[1]{%
+  doi:/\href{http://dx.doi.org/#1}{#1}}
+\providecommand{\arxiv}[1]{%
+  arXiv:\href{http://arxiv.org/abs/#1}{#1}}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{EKMM97}
+
+\bibitem[Ada74]{Ada1974Stable}
+J.~F. Adams, \emph{Stable {H}omotopy and {G}eneralised {H}omology}, Chicago
+  Lectures in Mathematics, University of Chicago Press, 1974.
+
+\bibitem[ATC]{ATC}
+\emph{{AlgTop-Conf}}, An open list for conference announcements.
+
+\bibitem[EKMM97]{EKMM1997Rings}
+A.~D. Elmendorf, I.~Kriz, M.~A. Mandell, and J.~P. May, \emph{Rings, modules,
+  and algebras in stable homotopy theory}, Mathematical Surveys and Monographs,
+  vol.~47, American Mathematical Society, Providence, RI, 1997, With an
+  appendix by M. Cole.
+
+\bibitem[Eve61]{Eve1961Cohomology}
+L.~Evens, \emph{The cohomology ring of a finite group}, Trans. Amer. Math. Soc.
+  \textbf{101} (1961), 224--239.
+
+\bibitem[Eve91]{Eve1991Cohomology}
+L.~Evens, \emph{The cohomology of groups}, Oxford Mathematical Monographs, The
+  Clarendon Press Oxford University Press, New York, 1991, Oxford Science
+  Publications.
+
+\bibitem[GO12]{GO2012Infinite}
+N.~Gurski and A.~Osorno, \emph{Infinite loop spaces, and coherence for
+  symmetric monoidal bicategories}, 2012. \arxiv{1210.1174}
+
+\bibitem[JN10]{JN2010Complex}
+N.~Johnson and J.~Noel, \emph{For complex orientations preserving power
+  operations, $p$-typicality is atypical}, Topology and its applications
+  \textbf{157} (2010), no.~14, pp.~2271--2288.
+  \doi{10.1016/j.topol.2010.06.007} \arxiv{0910.3187}
+
+\bibitem[Sage]{sage}
+The Sage Development Team, \emph{Sage mathematics software},
+  \url{http://www.sagemath.org}.
+
+\end{thebibliography}

@@ -1,0 +1,80 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Part of Niles Johnson's latex setup
+%% This document is in the public domain (2015)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%
+%% Stuff we only use in draft mode
+%% v. 1.0  2015-06-24 
+%%
+
+%%
+%% show label keys in margin
+%%
+\providecommand*\showkeyslabelformat[1]{%
+  \makebox[2cm][l]{\normalfont\tiny\ttfamily #1}
+}
+\usepackage[notref,notcite]{showkeys}
+
+%%
+%% extra right margin for notes
+%% (does not affect text width or height)
+%%
+\geometry{left=1.1in}
+
+%%
+%% watermark
+%%
+\ifpdf
+\usepackage{draftwatermark}
+\SetWatermarkScale{0.3}
+\SetWatermarkAngle{90}
+\SetWatermarkLightness{.8}
+
+%%
+%% set watermark
+%% uncomment second line
+%% for no watermark
+%%
+\SetWatermarkText{\shortstack{DRAFT \theyear-\themonth-\theday\ \thehour:\theminute:\thesecond\ \thetimezone\\\vspace{150pc}}}
+%\SetWatermarkText{}
+
+\fi
+
+
+
+
+
+%%
+%% todo notes
+%%
+\ifpdf
+\else
+\PassOptionsToPackage{dvistyle}{todonotes}
+\fi
+\usepackage[
+%disable=true, % uncomment for disabling
+obeyDraft,
+color=orange!80, % default color
+bordercolor=black,
+textwidth=3cm,
+textsize=small,
+colorinlistoftodos]
+{todonotes}
+%% the following is necessary for compatibility with amsart
+\makeatletter \providecommand\@dotsep{5}
+\makeatother
+%%  for compatibility with amsart:
+%%  use \amsartlistoftodos to make list of todos
+\newcommand{\amsartlistoftodos}{\makeatother \listoftodos\relax}
+
+%% use different colors for different collaborators or purposes
+
+%% N.J. notes: with/without line to margin, and inline
+\newcommand{\njnote}[1]{\todo[color=green!40,linecolor=green!40!black,size=\tiny]{#1}}
+\newcommand{\njmpar}[1]{\todo[noline,color=green!40,linecolor=green!40!black,
+  size=\tiny]{#1}}
+\newcommand{\njnoteil}[1]{\ \todo[inline,color=green!40,linecolor=green!40!black,size=\normalsize]{#1}}
+
+
+

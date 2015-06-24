@@ -1,0 +1,52 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Part of Niles Johnson's latex setup
+%% This document is in the public domain (2015)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%
+%% theorem and numbering declarations
+%% v. 6.0  2015-06-24
+%%
+
+\usepackage{amsmath,amsthm}
+\usepackage{float}
+%\usepackage{subfig,epsfig}
+
+%% enumeration style
+\renewcommand{\theenumi}{\textit{\roman{enumi}}}
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\theenumii}{\textit{\alph{enumii}}}
+\renewcommand{\labelenumii}{\theenumii)}
+
+%% Makes equations appear as secno.eqno
+\numberwithin{equation}{section} %% Comment out for sequentially-numbered
+\numberwithin{figure}{section} %% Comment out for sequentially-numbered
+
+\theoremstyle{plain} % bold environment name, italic text
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{prop*}{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+
+\theoremstyle{definition} % bold environment name, plain text
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{question}[thm]{Question}
+\newtheorem{example}[thm]{Example}
+\newtheorem{exercise}[thm]{Exercise}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{notn}[thm]{Notation}
+
+\theoremstyle{remark} % italic environment name, plain text
+\newtheorem{rmk}[thm]{Remark}
+
+\newtheorem*{note}{Note}
+
+%% This makes equations follow the theorem counter
+\makeatletter\let\c@equation\c@thm\makeatother
+%% This makes figures follow the theorem counter
+\makeatletter\let\c@figure\c@thm\makeatother
+
