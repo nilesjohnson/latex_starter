@@ -5,9 +5,9 @@
 
 %%
 %%  page setup stuff:
-%%  geometry, datetime, hyperref, todonotes, cleverref
+%%  geometry, datetime, todonotes
 %%
-%%  v. 5.0  2015-06-24
+%%  v. 6.0  2015-08-04
 %%
 
 \usepackage[T1]{fontenc}
@@ -80,42 +80,5 @@
 \PrerenderUnicode{ε}
 \PrerenderUnicode{Γ}
 
-\usepackage[unicode=true, pdfusetitle,
- bookmarks=true,bookmarksnumbered=false,
- breaklinks=false,
- backref=false,
- colorlinks=true,
- linkcolor=blue!70!black,
- citecolor=black,
- urlcolor=blue!78!red,
- final
-]{hyperref}
-
-\usepackage{bookmark}
 
 
-
-
-
-%%
-%% cross references
-%%
-\usepackage[capitalise]{cleveref}
-\newcommand{\fref}{\cref}
-\newcommand{\Fref}{\Cref}
-\newcommand{\prettyref}{\cref}
-\newcommand{\newrefformat}[2]{}
-
-% Cleveref definitions
-\crefname{lem}{Lemma}{Lemmas}
-\crefname{thm}{Theorem}{Theorems}
-\crefname{defn}{Definition}{Definitions}
-\crefname{notn}{Notation}{Notations}
-\crefname{construction}{Construction}{Constructions}
-\crefname{prop}{Proposition}{Propositions}
-\crefname{rmk}{Remark}{Remarks}
-\crefname{cor}{Corollary}{Corollaries}
-\crefname{figure}{Figure}{Figures}
-\crefname{equation}{Display}{Displays} % give 'equation' a more general name 
-\crefname{eq}{Display}{Displays}
-\crefname{eqn}{Display}{Displays}

@@ -5,12 +5,79 @@
 
 %%
 %% theorem and numbering declarations
-%% v. 6.0  2015-06-24
+%% hyperref and cleveref
+%% v. 7.0  2015-08-04
 %%
 
-\usepackage{amsmath,amsthm}
+
+
+
+
+%% There is a known problem with hyperref when the same counter is
+%% used for multiple environments with cleveref
+%%
+%% The easy and good fix is to load hyperref *before* amsthm, but this
+%% is not possible with documentclass amsart.  Instead then, one needs
+%% to reload amsthm, which is specifically prevented by amsart!  So
+%% the hack below makes it possible to again load amsthm with the
+%% amsart documentclass.
+%%
+%% http://tex.stackexchange.com/questions/250904/destination-with-the-same-identifier-warning-with-shared-counters-cleveref-an
+%%
+%% http://tex.stackexchange.com/questions/25047/how-do-i-get-rid-of-particular-pdftex-warning-message
+%%
+%% make amsthm.sty loadable
+\expandafter\let\csname ver@amsthm.sty\endcsname\relax
+%% remove the definitions that will be redone by amsthm
+\let\theoremstyle\relax
+\let\newtheoremstyle\relax
+\let\pushQED\relax
+\let\popQED\relax
+\let\qedhere\relax
+\let\mathqed\relax
+\let\openbox\relax
+\let\proof\relax\let\endproof\relax
+%%
+%% end of hack
+%%
+
+
 \usepackage{float}
-%\usepackage{subfig,epsfig}
+
+\usepackage[unicode=true, pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,
+ breaklinks=false,
+ backref=false,
+ colorlinks=true,
+ linkcolor=blue!70!black,
+ citecolor=black,
+ urlcolor=blue!78!red,
+ final
+]{hyperref}
+
+\usepackage{bookmark}
+
+
+
+\usepackage{amsmath,amsthm}
+
+
+
+%%
+%% cross references
+%%
+\usepackage[capitalise]{cleveref}  % load after hyperref
+\newcommand{\fref}{\cref}
+\newcommand{\Fref}{\Cref}
+\newcommand{\prettyref}{\cref}
+\newcommand{\newrefformat}[2]{}
+
+\newcommand{\clevertheorem}[3]{%
+  \newtheorem{#1}[thm]{#2}
+  \crefname{#1}{#2}{#3}
+}
+
+
 
 %% enumeration style
 \renewcommand{\theenumi}{\textit{\roman{enumi}}}
@@ -22,26 +89,29 @@
 \numberwithin{equation}{section} %% Comment out for sequentially-numbered
 \numberwithin{figure}{section} %% Comment out for sequentially-numbered
 
+
+
+
 \theoremstyle{plain} % bold environment name, italic text
 \newtheorem{thm}{Theorem}[section]
 \newtheorem*{thm*}{Theorem}
-\newtheorem{prop}[thm]{Proposition}
+\clevertheorem{prop}{Proposition}{Propositions}
 \newtheorem*{prop*}{Proposition}
-\newtheorem{lem}[thm]{Lemma}
-\newtheorem{cor}[thm]{Corollary}
-\newtheorem{conj}[thm]{Conjecture}
+\clevertheorem{lem}{Lemma}{Lemmas}
+\clevertheorem{cor}{Corollary}{Corollaries}
+\clevertheorem{conj}{Conjecture}{Conjectures}
 
 \theoremstyle{definition} % bold environment name, plain text
-\newtheorem{defn}[thm]{Definition}
-\newtheorem{defns}[thm]{Definitions}
-\newtheorem{question}[thm]{Question}
-\newtheorem{example}[thm]{Example}
-\newtheorem{exercise}[thm]{Exercise}
-\newtheorem{notation}[thm]{Notation}
-\newtheorem{notn}[thm]{Notation}
+\clevertheorem{defn}{Definition}{Definitions}
+\clevertheorem{defns}{Definitions}{Definitions}
+\clevertheorem{question}{Question}{Questions}
+\clevertheorem{example}{Example}{Examples}
+\clevertheorem{exercise}{Exercise}{Exercises}
+\clevertheorem{notation}{Notation}{Notations}
+\clevertheorem{notn}{Notation}{Notations}
 
 \theoremstyle{remark} % italic environment name, plain text
-\newtheorem{rmk}[thm]{Remark}
+\clevertheorem{rmk}{Remark}{Remarks}
 
 \newtheorem*{note}{Note}
 
@@ -49,4 +119,18 @@
 \makeatletter\let\c@equation\c@thm\makeatother
 %% This makes figures follow the theorem counter
 \makeatletter\let\c@figure\c@thm\makeatother
+
+
+
+
+
+
+ 
+% Additional cleveref definitions
+\crefname{figure}{Figure}{Figures}
+\crefname{equation}{Display}{Displays} % give 'equation' a more general name 
+\crefname{eq}{Display}{Displays}
+\crefname{eqn}{Display}{Displays}
+
+
 
