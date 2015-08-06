@@ -160,31 +160,14 @@ have to prerender unicode -- see \texttt{PageSetup.sty}
 The cleveref package includes the environment name with the reference,
 such as \cref{thm:atheorem}.  This is very useful for when you need to
 change the environment type of a result.  It is clever about
-referencing multiple results at once, such as
-\cref{thm:atheorem,lem:btheorem,ctheorem,disp1,disp2}.
+referencing multiple results at once, using ``and'' or a range where
+appropriate.  For example, the environments below are 
+\cref{defn,disp1,disp2,thm:atheorem,lem:btheorem,thm:ctheorem,prop:foo,lem:foo}.
+There are all kinds of ways to customize the list formatting; the
+package documentation is the best reference.
 
 I generally prefix my labels with the environment type, to help keep
 them straight in my mind, but this is unnecessary.
-
-\begin{defn}  This is how to define a definition.
-\end{defn}
-
-And for a theorem and its proof you would type:
-
-\begin{thm}\label{thm:atheorem}
-This is the statement of a theorem.
-\end{thm}
-\begin{proof}
-And this shows that the statement is correct.
-\end{proof}
-
-\begin{lem}\label{lem:btheorem}
-  another theorem.  Try changing it to a lemma.
-\end{lem}
-
-\begin{prop}\label{ctheorem}
-  a proposition
-\end{prop}
 
 Here's an equation
 \begin{equation}\label{disp1}
@@ -201,6 +184,37 @@ For multiline equations, use ``\texttt{align}'' or
   & = x(x+y) + y(x+y) \nonumber\\
   & = x^2 + xy + yx + y^2 
 \end{align}
+
+
+\begin{defn}\label{defn}
+  This is how to define a definition.
+\end{defn}
+
+And for a theorem and its proof you would type:
+
+\begin{thm}\label{thm:atheorem}
+This is the statement of a theorem.
+\end{thm}
+\begin{proof}
+And this shows that the statement is correct.
+\end{proof}
+
+\begin{thm}\label{lem:btheorem}
+  another theorem.  Try changing it to a lemma.
+\end{thm}
+
+\begin{thm}\label{thm:ctheorem}
+  a third theorem.
+\end{thm}
+
+\begin{prop}\label{prop:foo}
+  a proposition
+\end{prop}
+
+\begin{lem}\label{lem:foo}
+  a lemma
+\end{lem}
+
 
 
 \section{About text in tex}

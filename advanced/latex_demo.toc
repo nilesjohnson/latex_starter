@@ -11,7 +11,7 @@
 \contentsline {subsection}{\tocsubsection {}{3.3}{Further comments on text}}{3}{subsection.3.3}
 \contentsline {subsection}{\tocsubsection {}{3.4}{Punctuation}}{3}{subsection.3.4}
 \contentsline {section}{\tocsection {}{4}{TikZ for more complex drawings}}{3}{section.4}
-\contentsline {section}{\tocsection {}{5}{todonotes}}{3}{section.5}
+\contentsline {section}{\tocsection {}{5}{todonotes}}{4}{section.5}
 \contentsline {section}{\tocsection {}{6}{Bibliography}}{4}{section.6}
 \contentsline {section}{\tocsection {}{7}{Wait, there's more!}}{4}{section.7}
 \contentsline {section}{\tocsection {}{}{Acknowledgments}}{4}{section*.6}
