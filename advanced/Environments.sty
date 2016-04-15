@@ -52,8 +52,22 @@
  linkcolor=blue!70!black,
  citecolor=black,
  urlcolor=blue!78!red,
+ pagebackref,
  final
 ]{hyperref}
+
+\renewcommand*{\backreflastsep}{, }
+\renewcommand*{\backreftwosep}{, }
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{%
+  \ifcase #1 %
+No citations.% use \relax if you do not want the "No citations" message
+  \or
+(cit. on p. #2).%
+  \else
+(cit on pp. #2).%
+  \fi%
+}
 
 \usepackage{bookmark}
 
