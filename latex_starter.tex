@@ -1,36 +1,66 @@
 \documentclass[11pt,oneside,draft]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
 \usepackage{fouriernc} % Fourier fonts instead of Computer Modern
 
-\usepackage{Environments}   % thm, prop, etc.
-\usepackage{Definitions}    % macros
-\usepackage{PageSetup}      % general setup
+\usepackage{geometry} % page geometry
+\usepackage{xcolor} % colors
+\usepackage{tikz} % drawing
+\usepackage{hyperref} % hyperlinks
+
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[all,cmtip]{xy}
+
 
 
 %%
-%% Stuff for drafts only
-%% 
-\ifdraft{
-
-%% uncomment to manually disable todonotes
-%\PassOptionsToPackage{disable}{todonotes}
-
-%% uncomment to manually disable watermark
-%\PassOptionsToPackage{nostamp}{draftwatermark}
-
-%% uncomment to manually disable label keys
-%\PassOptionsToPackage{final}{showkeys}
-
-%% watermark, todonotes, geometry
-\usepackage{DraftSetup}
-
-%% uncomment to restore default geometry 
-%% defined in PageSetup
-%\loadgeometry{default}
-
-} % else (not draft)
-{}
+%% cross references
+%%
+\usepackage[capitalise]{cleveref}  % load after hyperref
+\newcommand{\clevertheorem}[3]{%
+  \newtheorem{#1}[thm]{#2}
+  \crefname{#1}{#2}{#3}
+}
 
 
+%% Makes equations appear as secno.eqno
+\numberwithin{equation}{section} %% Comment out for sequentially-numbered
+\numberwithin{figure}{section} %% Comment out for sequentially-numbered
+
+
+%%
+%% theorem-like environments
+%%
+\theoremstyle{plain} % bold environment name, italic text
+\newtheorem{thm}{Theorem}[section]
+\crefname{thm}{Theorem}{Theorems}
+\newtheorem*{thm*}{Theorem}
+\clevertheorem{prop}{Proposition}{Propositions}
+\newtheorem*{prop*}{Proposition}
+\clevertheorem{lem}{Lemma}{Lemmas}
+\clevertheorem{cor}{Corollary}{Corollaries}
+\clevertheorem{conj}{Conjecture}{Conjectures}
+
+\theoremstyle{definition} % bold environment name, plain text
+\clevertheorem{defn}{Definition}{Definitions}
+\clevertheorem{notn}{Notation}{Notations}
+
+\theoremstyle{remark} % italic environment name, plain text
+\clevertheorem{rmk}{Remark}{Remarks}
+
+\newtheorem*{note}{Note}
+
+%% This makes equations follow the theorem counter
+\makeatletter\let\c@equation\c@thm\makeatother
+%% This makes figures follow the theorem counter
+\makeatletter\let\c@figure\c@thm\makeatother
+
+
+% Additional cleveref definitions
+\crefname{figure}{Figure}{Figures}
+\crefname{equation}{Display}{Displays} % give 'equation' a more general name 
+\crefname{eq}{Display}{Displays}
+\crefname{eqn}{Display}{Displays}
 
 
 
@@ -109,7 +139,7 @@ Note that the numbering is taken care of automatically, and that we've predefine
 Another useful kind of enviroment is the equation environment.  Equations
 get numbered in sequence with statements, as for example
 
-\begin{equation}  e = mc^2
+\begin{equation}\label{eq1}  e = mc^2
 \end{equation}
 
 Note if you do not want a numbered equation, you can use the
@@ -124,9 +154,9 @@ For multiline equations, use ``\texttt{align}'' or
 ``\texttt{align*}'':
 
 \begin{align}
-  (x + y)^2 & = (x+y) (x+y) \\
+  (x + y)^2 & = (x+y) (x+y) \label{eq2}\\
   & = x(x+y) + y(x+y) \nonumber\\
-  & = x^2 + xy + yx + y^2 
+  & = x^2 + xy + yx + y^2 \label{eq3}
 \end{align}
 
 There are plenty of other equation-type enviroments that allow you to
@@ -180,6 +210,11 @@ use \verb|\ref{somename}| to reference that item.  For example, the
 section on environment commands is \ref{env-commands}, and it contains
 a theorem numbered \ref{atheorem}.  Latex must be run twice to
 correctly detect and print cross-references.
+
+The \texttt{cref} package provides the command \verb|\cref|, which
+automatically includes the name of the environment.  So you can
+refer to \cref{atheorem} or \cref{env-commands}.  It also
+properly handles multiple references, such as \cref{eq1,eq3}.
 
 \section{Xypic and diagrams}
 

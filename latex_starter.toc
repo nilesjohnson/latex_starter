@@ -1,11 +1,12 @@
-\contentsline {section}{\tocsection {}{1}{What does the table of contents command do?}}{1}
-\contentsline {section}{\tocsection {}{2}{How do the environment commands work?}}{1}
-\contentsline {subsection}{\tocsubsection {}{2.1}{Displaying equations}}{1}
-\contentsline {subsection}{\tocsubsection {}{2.2}{Inline math mode}}{2}
-\contentsline {subsection}{\tocsubsection {}{2.3}{Display math mode}}{2}
-\contentsline {subsection}{\tocsubsection {}{2.4}{Symbols}}{2}
-\contentsline {subsection}{\tocsubsection {}{2.5}{Further comments on text}}{2}
-\contentsline {section}{\tocsection {}{3}{Xypic and diagrams}}{2}
-\contentsline {section}{\tocsection {}{4}{TikZ for more complex drawings}}{2}
-\contentsline {subsection}{\tocsubsection {}{}{Acknowledgments}}{2}
-\contentsline {section}{\tocsection {}{}{References}}{3}
+\select@language {english}
+\contentsline {section}{\tocsection {}{1}{What does the table of contents command do?}}{1}{section.1}
+\contentsline {section}{\tocsection {}{2}{How do the environment commands work?}}{1}{section.2}
+\contentsline {subsection}{\tocsubsection {}{2.1}{Displaying equations}}{2}{subsection.2.1}
+\contentsline {subsection}{\tocsubsection {}{2.2}{Inline math mode}}{2}{subsection.2.2}
+\contentsline {subsection}{\tocsubsection {}{2.3}{Display math mode}}{2}{subsection.2.3}
+\contentsline {subsection}{\tocsubsection {}{2.4}{Symbols}}{2}{subsection.2.4}
+\contentsline {subsection}{\tocsubsection {}{2.5}{Further comments on text}}{3}{subsection.2.5}
+\contentsline {section}{\tocsection {}{3}{Xypic and diagrams}}{3}{section.3}
+\contentsline {section}{\tocsection {}{4}{TikZ for more complex drawings}}{3}{section.4}
+\contentsline {subsection}{\tocsubsection {}{}{Acknowledgments}}{3}{section*.2}
+\contentsline {section}{\tocsection {}{}{References}}{3}{section*.3}
