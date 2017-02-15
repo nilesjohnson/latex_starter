@@ -13,6 +13,13 @@
 %%%  DOI is printed if present, with href
 %%%  arxiv reference is printed, if present
 %%%
+%%% Niles Johnson, April 2016
+%%%  Implement option of sorting by author name instead of cite label
+%%%
+%%% Niles Johnson, January 2017
+%%%  remove leading slash in doi citation
+%%%  change urls for arxiv and doi to use https
+%%%
 
 %%% ====================================================================
 %%%  @BibTeX-style-file{
@@ -1336,9 +1343,39 @@ FUNCTION {editor.organization.sort}
   if$
 }
 
-FUNCTION {presort}
+% sort function from plain.bst
+FUNCTION {presort.plain}
+{ type$ "book" =
+  type$ "inbook" =
+  or
+    'author.editor.sort
+    { type$ "proceedings" =
+	'editor.organization.sort
+	{ type$ "manual" =
+	    'author.organization.sort
+	    'author.sort
+	  if$
+	}
+      if$
+    }
+  if$
+  "    "
+  *
+  year field.or.null sortify
+  *
+  "    "
+  *
+  title field.or.null
+  sort.format.title
+  *
+  #1 entry.max$ substring$
+  'sort.key$ :=
+}
+
+
+FUNCTION {presort.alpha}
 { calc.label
-  sort.label  % comment this line to sort by author instead of by key? (NJ)
+  sort.label  % does the label sorting
   "    "
   *
   type$ "book" =
@@ -1369,9 +1406,19 @@ FUNCTION {presort}
   'sort.key$ :=
 }
 
-ITERATE {presort}
-
+%%
+%% To alphabetize by author name instead of cite label
+%% http://tex.stackexchange.com/questions/31747/how-can-i-get-the-style-alpha-bst-sorted-as-plain-bst-in-bibtex
+%%
+%%
+%% use this block to sort by author name (NJ)
+ITERATE {presort.plain}
 SORT
+ITERATE {presort.alpha}
+%%
+%% use this block to sort by cite label (NJ)
+%ITERATE {presort.alpha}
+%SORT
 
 STRINGS {
   longest.label last.sort.label next.extra prev.author this.author
@@ -1457,11 +1504,11 @@ FUNCTION {begin.bib}
     write$ newline$
   "\providecommand{\doi}[1]{%"
     write$ newline$
-  "  doi:/\href{http://dx.doi.org/#1}{#1}}" %% NJ added DOI command
+  "  doi:\href{https://dx.doi.org/#1}{#1}}" %% NJ added DOI command
     write$ newline$
   "\providecommand{\arxiv}[1]{%"
     write$ newline$
-  "  arXiv:\href{http://arxiv.org/abs/#1}{#1}}" %% NJ added arxiv command
+  "  arXiv:\href{https://arxiv.org/abs/#1}{#1}}" %% NJ added arxiv command
     write$ newline$
   "\providecommand{\href}[2]{#2}"
     write$ newline$
