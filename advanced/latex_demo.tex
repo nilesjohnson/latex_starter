@@ -51,6 +51,8 @@
 }
 
 
+\usepackage{tikz-cd} % for tikz commutative diagrams 
+
 
 %% MSC
 %% http://www.ams.org/mathscinet/msc/msc2010.html
@@ -256,12 +258,297 @@ In math-mode, a hyphen is interpreted as a minus sign.  So if you want
 to write $G\mh\Cat$ for the category of $G$ categories, you need to
 use \verb|\mbox{-}| or the macro \verb|\mh|.
 
+\section{Diagrams}
 
-\section{TikZ for more complex drawings}
+For commutative diagrams, there are two basic choices: xypic and tikz.
+There is plenty to say about the relative advantages and disadvantages
+. . . maybe another time.  Whichever you use, the most common way to
+draw commutative diagrams is through some sort of ``matrix'' format:
+vertices are arranged on a rectangular grid, and arrows are drawn
+between grid coordinates.  In xypic, this is the \emph{xymatrix}
+environment, and for tikz this is the \emph{tikz-cd} package.  The
+majority of users can stop reading this section now and go search for
+information about these two systems.  (Really.  The matrix
+environments are good, and there are lots of good examples online.
+Come back here later when you decide you need more.)
 
-TikZ is somewhat more full-featured than xypic.  It has an extensive
-manual, a large online community, and a steep learning curve.  Here's one
-example diagram:
+
+\subsection{If you need more from your matrix diagram-drawing
+  environment}
+In my experience, the matrix-style drawing environments have
+limitations when it comes to more complex diagrams, where you want
+more individual control of vertex positioning and arrow type.  Here
+are some examples in both xypic and tikz.  In both formats we have the following.
+
+\begin{itemize}
+\item Objects are positioned by coordinates and given labels.
+\item Arrows connect objects referenced by their labels; thus when you
+  adjust objects, the arrows automatically adjust.
+\item Scale is controlled by independent parameters, so the entire
+  diagram can be adjusted as necessary.
+\end{itemize}
+
+These examples can all be made without too much trouble in the matrix
+environments too; that's not the point.  It's when \emph{most} of your
+diagrams look like this that you might think about leaving the
+matrix environments behind.
+
+
+\subsection{xypic examples}
+
+In this example, the emphasis is on 1 and 2-cells, so I made the
+objects smaller and the morphisms larger -- that's neither necessary
+nor appropriate in general.  Take a look at the code for the rest of
+the details.
+\[
+  \def\objectstyle{\scriptstyle}
+  \def\labelstyle{\textstyle}
+  \begin{xy}
+    0;<.79mm,0mm>:<0mm,.9mm>:: %set step size for x and y 
+    % objects are positioned by coordinates and
+    % given labels
+    (0,0)*+{yzw}="LL";
+    (20,20)*+{yzw}="TL";
+    (20,-20)*+{yzw}="BL";
+    (50,20)*+{yzw}="TR";
+    (50,-20)*+{yzw}="BR";
+    (70,0)*+{yzw}="RR";
+    (30,0)*+{yzw}="CC";  
+    % arrows connect objects referenced by their
+    % labels; you can also use coordinates directly,
+    % but that's just asking for trouble!
+    {\ar^-{\scriptstyle t_y \, z \, w} "LL"; "TL"};
+    {\ar^-{\scriptstyle y \, t_z \, w} "TL"; "TR"};
+    {\ar^-{\scriptstyle y \, z \, t_w} "TR"; "RR"};
+    {\ar_-{\scriptstyle y \, z \, t_w} "LL"; "BL"};
+    {\ar_-{\scriptstyle y \, t_z \, w} "BL"; "BR"};
+    {\ar_-{\scriptstyle t_y \, z \, w} "BR"; "RR"};
+    {\ar^-{\scriptstyle y \, t_z \, w} "LL"; "CC"};
+    {\ar_-{\scriptstyle t_y \, z \, w} "CC"; "TR"};
+    {\ar^-{\scriptstyle y \, z \, t_w} "CC"; "BR"};
+    {\ar@{=>}_-{\Sigma_{t_y,t_z} \, w} "CC"+(-5,8); "TL"+(3,-7) };
+    {\ar@{=>}^-{y \, \Sigma_{t_z,t_w}} "BL"+(5,8); "CC"+(-2,-7) };
+    {\ar@{=>}_-{\ \Sigma_{(t_y \, z), t_w}} "BR"+(-3,18); "TR"+(-3,-18) };
+    % (50,0)*{=};
+  \end{xy}
+  \begin{xy}
+    0;<2.2mm,0mm>:<0mm,2.2mm>:: %set step size for x and y
+    {\ar@{=}^{} (1,0)*+{}; (-1,0)*+{};};
+  \end{xy}
+  \begin{xy}
+    0;<.79mm,0mm>:<0mm,.9mm>:: %set step size for x and y
+    (0,0)*+{yzw}="LL";
+    (20,20)*+{yzw}="TL";
+    (20,-20)*+{yzw}="BL";
+    (50,20)*+{yzw}="TR";
+    (50,-20)*+{yzw}="BR";
+    (70,0)*+{yzw}="RR";
+    (40,0)*+{yzw}="CC";  
+    {\ar^-{\scriptstyle t_y \, z \, w} "LL"; "TL"};
+    {\ar^-{\scriptstyle y \, t_z \, w} "TL"; "TR"};
+    {\ar^-{\scriptstyle y \, z \, t_w} "TR"; "RR"};
+    {\ar_-{\scriptstyle y \, z \, t_w} "LL"; "BL"};
+    {\ar_-{\scriptstyle y \, t_z \, w} "BL"; "BR"};
+    {\ar_-{\scriptstyle t_y \, z \, w} "BR"; "RR"};
+    {\ar_-{\scriptstyle y \, z \, t_w} "TL"; "CC"};
+    {\ar^-{\scriptstyle t_y \, z \, w} "BL"; "CC"};
+    {\ar^-{\scriptstyle y \, t_z \, w} "CC"; "RR"};
+    {\ar@{=>}^-{\Sigma_{t_y, (z \, t_w)}} "BL"+(3,18); "TL"+(3,-18) };
+    {\ar@{=>}_-{\Sigma_{t_y,t_z} \, w} "BR"+(-5,8); "CC"+(3,-7) };
+    {\ar@{=>}^-{y \, \Sigma_{t_z,t_w}} "CC"+(5,8); "TR"+(-2,-7) };
+  \end{xy}
+\]
+
+Here is another example diagram.
+\newcommand{\Anglearrow}[1]{\rotatebox{#1}{$\Rightarrow$}}
+\[ 
+  \begin{xy}
+    0;<.95mm,0mm>:<0mm,1mm>:: %set step size for x and y
+    (3,-10)*+{\cD^{\otimes 3}}="00";
+    (18,0)*+{\cD^{\otimes 3}}="10";
+    (36,0)*+{\cD^{\otimes 3}}="20";
+    (51,-10)*+{\cD^{\otimes 2}}="30";
+    (27,-15)*+{\cD^{\otimes 2}}="11";
+    (18,-30)*+{\cD^{\otimes 2}}="12";
+    (36,-30)*+{\cD}="33";
+    (69,-10)*+{\cD^{\otimes 3}}="40";
+    (84,0)*+{\cD^{\otimes 3}}="50";
+    (102,0)*+{\cD^{\otimes 3}}="60";
+    (117,-10)*+{\cD^{\otimes 2}}="70";
+    (84,-30)*+{\cD^{\otimes 2}}="52";
+    (102,-30)*+{\cD}="73";
+    (102,-17)*+{\cD^{\otimes 2}}="63";
+    {\ar^{\scriptstyle \tau \id} "00"; "10"};
+    {\ar^{\scriptstyle \tau \id} "40"; "50"};
+    {\ar^{\scriptstyle \id \tau } "10"; "20"};
+    {\ar^{\scriptstyle \id \tau } "50"; "60"};
+    {\ar^{\scriptstyle \oplus \id} "20"; "30"};
+    {\ar^{\scriptstyle \oplus \id} "60"; "70"};
+    {\ar^{\scriptstyle \oplus} "30"; "33"};
+    {\ar^{\scriptstyle \oplus} "70"; "73"};
+    {\ar_{\scriptstyle \oplus \id} "00"; "12"};
+    {\ar_{\scriptstyle \oplus \id} "40"; "52"};
+    {\ar_{\scriptstyle \oplus} "12"; "33"};
+    {\ar_{\scriptstyle \oplus} "52"; "73"};
+    {\ar_{\scriptstyle \id \oplus} "00"; "11"};
+    {\ar^{\scriptstyle \tau} "11"; "30"};
+    {\ar_{\scriptstyle \oplus} "11"; "33"};
+    {\ar^{\scriptstyle \oplus \id} "50"; "52"};
+    {\ar_{\scriptstyle \id \oplus} "50"; "63"};
+    {\ar^{\scriptstyle \id \oplus} "60"; "63"};
+    {\ar^{\scriptstyle \oplus} "63"; "73"};
+    (27,-7.5)*{=}; (19,-21)*{=}; (108,-12)*{=}; (93,-20)*{=}; (59,-15)*{=};
+    (37,-19)*{\scriptstyle \Anglearrow{40} \beta}; 
+    (78.4,-12.5)*{\scriptstyle \Anglearrow{40} \beta \id}; 
+    (96,-5)*{\scriptstyle \Anglearrow{40} \id \beta};
+  \end{xy}
+\]
+
+
+\subsection{tikz examples}
+
+As a general drawing program, tikz is somewhat more full-featured than
+xypic.  This means that to easily draw commutative diagrams, one needs
+to restrict the general functionality of tikz (for example, tikz does
+not draw arrowheads on connecting lines by default, but we want this
+for commutative diagrams).  Some of these customizations are available
+in the tikz-cd package, but I've found that more is generally required
+(unless one wants to use the matrix format of the \emph{tikzcd}
+environment).  My adjustments are here in the tex source for this document.
+
+
+%%
+%% commutative diagrams with tikz
+%%
+%\usepackage{tikz} % loaded in preamble
+\usetikzlibrary{decorations.markings,decorations.pathmorphing}
+\usetikzlibrary{arrows}
+%\usepackage{tikz-cd} % loaded in preamble; we use some features from this package 
+
+%%
+%% tikz can provide arrowheads that match the default font
+%% but they don't always look good; adjust as you like
+%%
+%\tikzset{/tikz/commutative diagrams/arrow style=math font} % matching arrowheads
+\tikzset{/tikz/commutative diagrams/arrow style=tikz,>=stealth} % almost matching arrowheads; these look better in pdf than the others
+
+%%
+%% styles for mathmode, objects, and arrows
+%%
+\tikzset{mm/.style={execute at begin node=$\displaystyle, execute at end node=$}}
+\tikzset{tikzob/.style={commutative diagrams/every diagram, every cell}}
+\tikzset{tikzar/.style={commutative diagrams/.cd, every arrow, every label, font={\small}}}
+
+% style of squiggly arrows
+\tikzset{tikzsquiggle/.style={decorate, decoration={
+    snake,
+    segment length=8pt,
+    amplitude=.9pt,post=lineto,
+    post length=2pt}}}
+
+% for an arrow that crosses another arrow
+\tikzset{cross line/.style={preaction={draw=white, -, line width=6pt}}}
+
+
+  \[
+  \begin{tikzpicture}[x=35mm,y=25mm,baseline={(0,16mm)}]
+    \draw[tikzob,mm] %objects
+    (0,1) node (sax) {s.(a,x)}
+    (1,1) node (tax) {t.(a,x)}
+    (.5,0) node (by) {(b,y)};
+    \path[tikzar,mm] %arrows
+    (sax) edge[bend left=25] node {q.1} (tax) 
+    (sax) edge[bend right=25,swap] node {p.1} (tax) 
+    (sax) edge[swap] node {(\al,\phi)} (by)
+    (tax) edge node {(\be,\psi)} (by);
+    \draw[tikzob,mm]
+    (.5,.5) node[rotate=35,font=\Large] {\Rightarrow}
+    (.5,1) node[rotate=90,font=\Large] {\Rightarrow}
+      node[right] {\Theta};
+  \end{tikzpicture}
+  \ =\ 
+  \begin{tikzpicture}[x=35mm,y=25mm,baseline={(0,16mm)}]
+    \draw[tikzob,mm] %objects
+    (0,1) node (sax) {s.(a,x)}
+    (1,1) node (tax) {t.(a,x)}
+    (.5,0) node (by) {(b,y)};
+    \path[tikzar,mm] %arrows
+    (sax) edge[bend left=25] node {q.1} (tax) 
+    (sax) edge[swap] node {(\al,\phi)} (by)
+    (tax) edge node {(\be,\psi)} (by);
+    \draw[tikzob,mm]
+    (.5,.65) node[rotate=35,font=\Large] {\Rightarrow};
+  \end{tikzpicture}
+  \]
+
+Here's another example which takes advantage of using polar
+coordinates instead of cartesian coordinates to position vertices.
+
+  \[
+  \begin{tikzpicture}[x=15mm,y=15mm,baseline=(-60:1)]
+    \draw[tikzob,mm] %objects
+    (0,0) node (a) {F(c)}
+      (-90:.55) node[rotate=-60,font=\small] {\Downarrow}
+    (-120:1) node (b) {F(c')}
+    (-60:1) node (c) {\si_i}
+      ++(90:.55) node[font=\small] {\Downarrow}
+    (0:1) node (d) {\si_j};
+    \path[tikzar,mm] %arrows
+    (a) edge (b)
+    (b) edge (c)
+    (c) edge (d)
+    (a) edge (d)
+    (a) edge (c);    
+  \end{tikzpicture}
+  =
+  \begin{tikzpicture}[x=15mm,y=15mm,baseline=(-60:1)]
+    \draw[tikzob,mm] %objects
+    (0,0) node (a) {F(c)}
+    (-60:1) node (b) {F(c')}
+      +(90:.55) node[font=\small] {\Downarrow}
+    ++(0:1) node (c) {\si_i}
+    (0:1) node (d) {\si_j}
+      ++(-90:.55) node[rotate=60,font=\small] {\Downarrow};
+    \path[tikzar,mm] %arrows
+    (a) edge (b)
+    (b) edge (c)
+    (c) edge (d)
+    (a) edge (d)
+    (b) edge (d);
+  \end{tikzpicture}
+  \]
+
+
+
+Here's another example showing different arrow styles.
+
+\[
+\begin{tikzpicture}[x=20mm,y=18mm]
+  \draw[tikzob,mm]
+  (0,1) node (q) {[q]}
+  (0,-1) node (p) {[p]}
+  (1,0) node (qp) {[q]*[p]}
+  (2,1) node (C) {\cC}
+  (2,-1) node (D) {\cD}
+  (-1,0) node (x) {[0]} % extra vertex
+  ;
+  \path[tikzar,mm]
+  (x) edge[bend right=10] (C) 
+  (x) edge (q)
+  (x) edge (p)
+  (q) edge[tikzsquiggle] node[above=.8mm] {\om} (C)
+  (p) edge[tikzsquiggle] node[below=.8mm] {\si} (D)
+  (qp) edge[tikzsquiggle] node {\de} (D)
+  (q) edge[cross line] (qp)
+  (p) edge (qp)
+  (C) edge node {F} (D)
+  ;
+\end{tikzpicture}
+\]
+
+
+And finally, here's another tikz example I like, demonstrating how it
+can be used for drawings other than commutative diagrams.
 
 \begin{center}
 \begin{tikzpicture}[scale=.8]

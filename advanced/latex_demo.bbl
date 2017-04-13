@@ -5,9 +5,9 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\doi}[1]{%
-  doi:/\href{http://dx.doi.org/#1}{#1}}
+  doi:\href{https://dx.doi.org/#1}{#1}}
 \providecommand{\arxiv}[1]{%
-  arXiv:\href{http://arxiv.org/abs/#1}{#1}}
+  arXiv:\href{https://arxiv.org/abs/#1}{#1}}
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{EKMM97}
 
@@ -24,14 +24,14 @@ A.~D. Elmendorf, I.~Kriz, M.~A. Mandell, and J.~P. May, \emph{Rings, modules,
   vol.~47, American Mathematical Society, Providence, RI, 1997, With an
   appendix by M. Cole.
 
-\bibitem[Eve61]{Eve1961Cohomology}
-L.~Evens, \emph{The cohomology ring of a finite group}, Trans. Amer. Math. Soc.
-  \textbf{101} (1961), 224--239.
-
 \bibitem[Eve91]{Eve1991Cohomology}
 L.~Evens, \emph{The cohomology of groups}, Oxford Mathematical Monographs, The
   Clarendon Press Oxford University Press, New York, 1991, Oxford Science
   Publications.
+
+\bibitem[Eve61]{Eve1961Cohomology}
+L.~Evens, \emph{The cohomology ring of a finite group}, Trans. Amer. Math. Soc.
+  \textbf{101} (1961), 224--239.
 
 \bibitem[GO12]{GO2012Infinite}
 N.~Gurski and A.~Osorno, \emph{Infinite loop spaces, and coherence for
