@@ -1,0 +1,13 @@
+.dropbox
+*.out.ps
+*.synctex*
+*.aux
+*.toc
+*.log
+*.out
+*.rel
+*.blg
+*.fls
+*.fdb_latexmk
+*.tdo
+*.brf
